@@ -39,7 +39,6 @@ class NType<T> {
         return this._value
     }
 
-
 }
 
 export default NType
