@@ -1,8 +1,9 @@
 import { invalidTypeException } from "../exceptions/TypeExceptions.js";
 import NType from "./NType.js";
 class NArray extends NType {
-    constructor() {
+    constructor(defaultValue = []) {
         super([]);
+        this.set(defaultValue);
     }
     set(array) {
         if (!this.validArray(array)) {

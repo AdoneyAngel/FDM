@@ -4,6 +4,7 @@
   "description": "Firebase Database Manager",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch --experimental-strip-types ./src/index.ts"
@@ -26,6 +27,7 @@
   },
   "exports": {
     "./db/firebase": "./dist/db/firebase/db.js",
-    "./types": "./dist/nTypes/index.js"
+    "./types": "./dist/nTypes/index.js",
+    ".": "./dist/index.js"
   }
 }

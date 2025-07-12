@@ -1,6 +1,6 @@
 import NType from "./NType.js";
 declare class NArray extends NType<[...any]> {
-    constructor();
+    constructor(defaultValue?: [...any]);
     set(array: [...any]): void;
     validArray(array: [...any]): boolean;
 }
