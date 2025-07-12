@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Firebase Database Manager",
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch --experimental-strip-types ./src/index.ts"
@@ -20,5 +20,12 @@
   "homepage": "https://github.com/AdoneyAngel/fdm#readme",
   "dependencies": {
     "firebase": "^11.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "exports": {
+    "./db/firebase": "./dist/db/firebase/db.js",
+    "./types": "./dist/nTypes/index.js"
   }
 }

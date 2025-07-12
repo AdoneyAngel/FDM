@@ -1,5 +1,5 @@
-import FirebaseConfig from "../../types/FirebaseConfig"
-import Debug from "../../utils/Debug"
+import FirebaseConfig from "../../types/FirebaseConfig.js"
+import Debug from "../../utils/Debug.js"
 import { FirebaseApp, initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 
@@ -11,6 +11,8 @@ class FirebaseDb {
 
     private constructor(config: FirebaseConfig) {
         FirebaseDb.#config = config
+
+        FirebaseDb.#start()
     }
 
     static #start() {
