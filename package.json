@@ -14,7 +14,7 @@
     "url": "git+https://github.com/AdoneyAngel/fdm.git"
   },
   "author": "Adoney Tejera Santana",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AdoneyAngel/fdm/issues"
   },
