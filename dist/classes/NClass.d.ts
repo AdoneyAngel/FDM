@@ -1,13 +1,13 @@
 declare class NClass {
     static doc: string;
     constructor();
-    static all(): Promise<any[]>;
+    static all(): Promise<Object[]>;
     set(data: {
         [key: string]: any;
     }): void;
     valid(data: {
         [key: string]: any;
     }): boolean;
-    static _createInstance(attributes: any): any;
+    static _createInstance(attributes: any): Object;
 }
 export default NClass;

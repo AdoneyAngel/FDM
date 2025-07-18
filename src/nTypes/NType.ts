@@ -22,6 +22,10 @@ class NType<T> {
     get value(): T {
         return this._value
     }
+    
+    get default(): T {
+        return this._default
+    }
 
     valid(value: any) {
         return value.constructor.name.toLowerCase() === this._default.constructor.name.toLowerCase()

@@ -18,14 +18,14 @@ class NClass {
         const dataResult = await getDocs(dataQuery)
 
         return dataResult.docs.map((item: any) => {
-            const newObject = this._createInstance({...item.data()})
+            const newObject = this._createInstance({ ...item.data() })
 
             return newObject
         })
     }
 
     //Class methods
-    set(data: {[key: string]: any}) {
+    set(data: { [key: string]: any }) {
         this.valid(data)
 
         for (const key in data) {
@@ -40,7 +40,7 @@ class NClass {
         }
     }
 
-    valid(data: {[key: string]: any}) {
+    valid(data: { [key: string]: any }) {
         for (const key in data) {
             const dataValue = data[key]
             const currentClassValue = this[key]
@@ -60,11 +60,30 @@ class NClass {
     }
 
     //Private
-    static _createInstance(attributes: any) {
-        const instance = Object.create(this.prototype)
-        Object.assign(instance, attributes)
+    static _createInstance(attributes: any): Object {
+        const newInstance = Object.create(this.prototype)
+        const thisInstance = this
 
-        return instance
+        for (const staticKey in thisInstance) {
+            const staticValue = thisInstance[staticKey]
+
+            //Exclude NClass attributes
+            if (["doc"].includes(staticKey)) continue
+
+            if (staticValue instanceof NType) {
+                const attrValue = attributes[staticKey]
+
+                console.log(attrValue)
+
+                if (attrValue != undefined && staticValue.valid(attrValue)) {
+                    staticValue.set(attrValue)
+                }
+
+                Object.assign(newInstance, { [staticKey]: staticValue })
+            }
+        }
+
+        return newInstance
     }
 }
 

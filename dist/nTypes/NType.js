@@ -17,6 +17,9 @@ class NType {
     get value() {
         return this._value;
     }
+    get default() {
+        return this._default;
+    }
     valid(value) {
         return value.constructor.name.toLowerCase() === this._default.constructor.name.toLowerCase();
     }

@@ -6,6 +6,7 @@ declare class NType<T> {
     constructor(defaultValue: T);
     set(value: T): void;
     get value(): T;
+    get default(): T;
     valid(value: any): boolean;
     [inspect.custom](): T;
     toString(): T;

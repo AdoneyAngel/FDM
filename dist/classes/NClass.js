@@ -48,9 +48,23 @@ class NClass {
     }
     //Private
     static _createInstance(attributes) {
-        const instance = Object.create(this.prototype);
-        Object.assign(instance, attributes);
-        return instance;
+        const newInstance = Object.create(this.prototype);
+        const thisInstance = this;
+        for (const staticKey in thisInstance) {
+            const staticValue = thisInstance[staticKey];
+            //Exclude NClass attributes
+            if (["doc"].includes(staticKey))
+                continue;
+            if (staticValue instanceof NType) {
+                const attrValue = attributes[staticKey];
+                console.log(attrValue);
+                if (attrValue != undefined && staticValue.valid(attrValue)) {
+                    staticValue.set(attrValue);
+                }
+                Object.assign(newInstance, { [staticKey]: staticValue });
+            }
+        }
+        return newInstance;
     }
 }
 export default NClass;
