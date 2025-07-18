@@ -3,10 +3,13 @@ import { invalidTypeException } from "../exceptions/TypeExceptions.js";
 import NType from "./NType.js";
 
 class NArray extends NType<[...any]> {
-    constructor(defaultValue: [...any] = []) {
+    _object: any
+
+    constructor(object: new (...args: any[])=>any, defaultValue: [...any] = []) {
         super([])
 
         this.set(defaultValue)
+        this._object = object
     }
 
     set(array: [...any]) {
@@ -18,9 +21,22 @@ class NArray extends NType<[...any]> {
 
     }
 
-    validArray(array: [...any]) {
+    validArray(array: [...item: any[]]) {
+        let isValid = true
+
         if (array.constructor.name.toLowerCase() !== "array") {
-            throw new invalidTypeException("The vale must be Array")
+            return false
+        }
+
+        array.forEach(item => {
+            if (!(item instanceof this._object)) {
+                isValid = false
+                return false
+            }
+        })
+
+        if (!isValid) {
+            return false
         }
 
         return !(array.find(item => !(item instanceof NType || item instanceof NClass)))
