@@ -2,9 +2,18 @@ import NType from "./NType.js";
 
 class NString extends NType<string> {
     constructor(defaultValue: string = "") {
-        super("")
+        super(defaultValue)
+    }
+    
+    _transform(value: any) {
+        if (value === undefined) {
+            return this._default
+        }
+        if (typeof value == "object") {
+            return this._default
+        }
 
-        this.set(defaultValue)
+        return `${value}`
     }
 }
 

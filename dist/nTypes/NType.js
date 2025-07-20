@@ -12,7 +12,12 @@ class NType {
         if (!this.valid(value)) {
             throw new invalidTypeException(`The new value must be type of ${this._default.constructor.name}`);
         }
-        this._value = value;
+        const transformedValue = this._transform(value);
+        this._value = transformedValue;
+    }
+    secureSet(value) {
+        const transformedValue = this._transform(value);
+        this._value = transformedValue;
     }
     get value() {
         return this._value;

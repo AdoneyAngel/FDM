@@ -1,7 +1,7 @@
 import { invalidTypeException } from "../exceptions/TypeExceptions.js"
 import { inspect } from "node:util"
 
-class NType<T> {
+abstract class NType<T> {
     primitive: T
     protected _default: T
     protected _value: T
@@ -11,13 +11,23 @@ class NType<T> {
         this._value = defaultValue
     }
 
-    set(value: T) {
+    set(value: T): void {
         if (!this.valid(value)) {
             throw new invalidTypeException(`The new value must be type of ${this._default.constructor.name}`)
         }
 
-        this._value = value
+        const transformedValue = this._transform(value)
+
+        this._value = transformedValue
     }
+
+    secureSet(value: any): void {
+        const transformedValue = this._transform(value)
+
+        this._value = transformedValue
+    }
+
+    abstract _transform(value: T)
 
     get value(): T {
         return this._value

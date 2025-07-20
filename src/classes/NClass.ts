@@ -73,10 +73,8 @@ class NClass {
             if (staticValue instanceof NType) {
                 const attrValue = attributes[staticKey]
 
-                console.log(attrValue)
-
-                if (attrValue != undefined && staticValue.valid(attrValue)) {
-                    staticValue.set(attrValue)
+                if (attrValue != undefined) {
+                    staticValue.secureSet(attrValue)
                 }
 
                 Object.assign(newInstance, { [staticKey]: staticValue })
